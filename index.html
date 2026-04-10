@@ -62,7 +62,7 @@
         .card-work { grid-column: span 1; grid-row: span 1; }
         .card-skills { grid-column: span 1; grid-row: span 1; }
         .card-cta { grid-column: span 2; grid-row: span 1; }
-        .card-social { grid-column: span 2; grid-row: span 1; }
+        .card-social { grid-row: span 1; }
         .card-footer { grid-column: span 1; grid-row: span 1; }
 
         /* Responsive Breakpoints */
@@ -216,7 +216,18 @@
                 </div>
             </div>
         </div>
-
+<!-- SOCIALS CARD -->
+        <div class="bento-card card-social bg-accent flex justify-between items-center">
+            <h2 class="text-3xl font-light">Follow Me</h2>
+            <div class="flex gap-6">
+                <a href="#" class="hover:scale-110 transition-transform">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                <span class="font-bold text-xl cursor-pointer">Bē</span>
+                <span class="font-bold text-xl cursor-pointer">M</span>
+            </div>
+        </div>
+        
         <!-- CTA CARD -->
         <div class="bento-card card-cta bg-secondary flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="w-full">
@@ -232,19 +243,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- SOCIALS CARD -->
-        <div class="bento-card card-social bg-accent flex justify-between items-center">
-            <h2 class="text-3xl font-light">Follow Me</h2>
-            <div class="flex gap-6">
-                <a href="#" class="hover:scale-110 transition-transform">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
-                <span class="font-bold text-xl cursor-pointer">Bē</span>
-                <span class="font-bold text-xl cursor-pointer">M</span>
-            </div>
-        </div>
-
         <!-- FOOTER CARD -->
         <div class="bento-card card-footer bg-dark-accent flex items-center">
             <p class="text-[10px] leading-relaxed opacity-60  tracking-tighter">
@@ -252,7 +250,6 @@
             </p>
         </div>
     </div>
-
     <!-- ABOUT ME OVERLAY -->
     <div id="about-view" class="view-overlay">
         <div class="max-w-4xl mx-auto">
@@ -284,7 +281,7 @@
         <div class="max-w-6xl mx-auto">
             <button onclick="closeView('case-view')" class="text-sm font-medium mb-16 flex items-center hover:translate-x-[-8px] transition-transform group">
                 <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Back to Dashboard
+                Back to Main Screen
             </button>
 
             <h1 class="text-5xl font-bold mb-12">Case Studies</h1>
