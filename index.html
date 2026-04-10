@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pushpesh Yadav | Product Portfolio</title>
+    <title>Pushpesh Yadav | Senior Product Designer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -19,7 +19,7 @@
 
         body {
             font-family: 'Outfit', sans-serif;
-            background-color: var(--beige);
+            background-color: #1a1a1a; /* Dark void for background */
             color: var(--brown);
             margin: 0;
             overflow: hidden;
@@ -27,10 +27,8 @@
 
         h1, h2, h3, .title-font {
             font-family: 'Space Grotesk', sans-serif;
-            text-transform: uppercase;
         }
 
-        /* Full Screen Bento Grid */
         .grid-wrapper {
             display: grid;
             grid-template-columns: 1.2fr 1fr 1fr;
@@ -51,66 +49,67 @@
             display: flex;
             flex-direction: column;
             padding: 2rem;
-            border: 1px solid rgba(61, 43, 31, 0.1);
             transition: all 0.3s ease;
         }
 
         .bento-box:hover {
-            transform: scale(0.99);
-            filter: brightness(0.98);
+            transform: scale(0.995);
         }
 
-        /* Match Sketch Layout */
+        /* Match Sketch Layout specifically */
         .box-profile { grid-row: span 2; background-color: #E8E2D6; }
-        .box-about { grid-column: span 1; background-color: #F9F7F2; }
-        .box-cases { grid-column: span 1; background-color: #04422E; color: var(--beige); }
-        .box-skills { grid-column: span 1; }
-        .box-illustration { background-color: var(--soft-red); display: flex; align-items: center; justify-content: center; }
+        .box-about { grid-column: span 1; background-color: #F9F7F2; cursor: pointer; }
+        .box-cases { grid-column: span 1; background-color: #F2F0EB; cursor: pointer; }
+        .box-skills { grid-column: span 1; background-color: #F9F7F2; }
+        .box-illustration { background-color: #F9F7F2; display: flex; align-items: center; justify-content: center; }
         .box-work-with { grid-row: span 2; background-color: #FDFCFB; }
         .box-contact { grid-column: span 2; background-color: #ECE8E1; flex-direction: row; align-items: center; }
         .box-socials { background-color: #DED8CC; }
         .box-arrow { background-color: var(--dark-green); display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; }
 
-        /* Abstract Art Backgrounds */
-        .abstract-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        /* Navigation Sliding */
+        /* Navigation Logic */
         .view-active .grid-wrapper {
-            transform: translateY(-110vh);
+            transform: translateX(-100vw);
         }
 
         .full-view {
             position: fixed;
-            top: 100vh;
-            left: 0;
+            top: 0;
+            left: 100vw;
             width: 100vw;
             height: 100vh;
             background-color: var(--beige);
             z-index: 100;
             transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
             overflow-y: auto;
-            padding: 4rem 2rem;
+            padding: 0;
         }
 
         .view-active .full-view {
-            transform: translateY(-100vh);
+            transform: translateX(-100vw);
         }
 
-        .face-illustration {
-            width: 120px;
-            height: 120px;
-            z-index: 1;
+        /* Skills Carousel Animation */
+        .carousel-track {
+            display: flex;
+            transition: transform 0.6s ease-in-out;
         }
 
+        /* Logo Styling */
+        .client-logo {
+            filter: grayscale(100%);
+            opacity: 0.5;
+            transition: all 0.3s ease;
+            max-width: 80px;
+            height: auto;
+        }
+        .client-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        /* Case Studies Nav */
         .case-nav-btn {
             padding: 0.5rem 1.5rem;
             border-radius: 99px;
@@ -125,14 +124,9 @@
             border-color: var(--dark-green);
         }
 
-        @media (max-width: 768px) {
-            .grid-wrapper {
-                display: flex;
-                flex-direction: column;
-                height: auto;
-                overflow-y: auto;
-            }
-            .bento-box { min-height: 250px; }
+        .face-sketch {
+            max-height: 180px;
+            width: auto;
         }
     </style>
 </head>
@@ -140,131 +134,167 @@
 
     <div id="main-grid" class="grid-wrapper">
         
-        <!-- PY Profile (Left Tall) -->
+        <!-- Profile Box -->
         <div class="bento-box box-profile">
-            <div class="z-10">
-                <h2 class="text-4xl font-bold mb-2">PY</h2>
-                <div class="mt-40">
-                    <h1 class="text-5xl font-extrabold leading-tight">Pushpesh<br>Yadav</h1>
-                    <p class="text-xl opacity-70 mt-4">Digital Product Manager</p>
+            <h2 class="text-6xl font-bold tracking-tighter text-dark-green">py</h2>
+            <div class="mt-auto">
+                <h1 class="text-6xl font-bold leading-none mb-4">Pushpesh<br>Yadav</h1>
+                <div class="bg-brown text-beige px-4 py-2 rounded-full inline-block text-sm font-semibold">
+                    Digital Product Manager
                 </div>
             </div>
-            <svg class="abstract-bg" viewBox="0 0 100 100"><circle cx="80" cy="20" r="40" fill="currentColor"/></svg>
+            <!-- Hand drawn style illustration -->
+            <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Pushpesh&backgroundColor=transparent&top=shortHair&accessories=round&hairColor=black" alt="Illustration" class="face-sketch absolute -bottom-4 -right-4 opacity-80">
         </div>
 
-        <!-- About (Top Middle) -->
-        <div class="bento-box box-about cursor-pointer" onclick="openView('about')">
-            <div class="flex justify-between items-start z-10">
-                <h3 class="text-3xl font-bold">About</h3>
-                <i class="fas fa-plus text-xl"></i>
+        <!-- About Me Box -->
+        <div class="bento-box box-about" onclick="openView('about')">
+            <div class="flex justify-between items-start">
+                <h3 class="text-2xl font-bold">About Me</h3>
+                <i class="fas fa-plus opacity-30"></i>
             </div>
-            <div class="mt-auto flex justify-center">
-                <svg class="face-illustration" viewBox="0 0 100 100">
-                    <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" stroke-width="2"/>
-                    <ellipse cx="35" cy="40" rx="4" ry="6" fill="currentColor"/>
-                    <ellipse cx="65" cy="40" rx="4" ry="6" fill="currentColor"/>
-                    <path d="M 35 70 Q 50 85 65 70" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-        </div>
-
-        <!-- Case Studies (Top Right) -->
-        <div class="bento-box box-cases cursor-pointer" onclick="openView('cases')">
-            <h3 class="text-3xl font-bold">Case<br>Studies</h3>
-            <div class="mt-auto self-end text-6xl opacity-20">06</div>
-        </div>
-
-        <!-- Skills (Education/Exp replacement) -->
-        <div class="bento-box box-skills">
-            <h3 class="text-xl font-bold mb-4">Skills</h3>
-            <div class="space-y-2 text-sm">
-                <div class="flex justify-between border-b border-brown/10 pb-1"><span>Discovery</span><span>90%</span></div>
-                <div class="flex justify-between border-b border-brown/10 pb-1"><span>Strategy</span><span>85%</span></div>
-                <div class="flex justify-between border-b border-brown/10 pb-1"><span>UI/UX</span><span>75%</span></div>
+            <p class="text-sm mt-4 opacity-70 line-clamp-4">
+                Senior Product Designer with 10+ years of experience crafting enterprise SaaS platforms and Al-driven products across healthcare and fintech...
+            </p>
+            <div class="mt-auto flex items-center text-dark-green font-bold text-sm">
+                Read Now >>
             </div>
         </div>
 
-        <!-- Illustration -->
+        <!-- Case Studies Box -->
+        <div class="bento-box box-cases" onclick="openView('cases')">
+            <div class="flex justify-end">
+                <div class="w-12 h-12 rounded-full bg-dark-green flex items-center justify-center text-white">
+                    <i class="fas fa-arrow-up rotate-45"></i>
+                </div>
+            </div>
+            <div class="mt-auto">
+                <h3 class="text-5xl font-bold leading-none">Case<br>Studies</h3>
+            </div>
+        </div>
+
+        <!-- Skills & Tools Carousel Box -->
+        <div class="bento-box box-skills overflow-hidden">
+            <h3 class="text-xl font-bold mb-4">Skills & Tools</h3>
+            <div id="carousel-track" class="carousel-track h-full">
+                <!-- Slide 1: Skills -->
+                <div class="min-w-full flex flex-wrap gap-2 content-start">
+                    <span class="px-3 py-1 bg-white rounded-full text-xs font-bold border border-brown/10">UX Strategy</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs font-bold border border-brown/10">Product Discovery</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs font-bold border border-brown/10">Design Systems</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs font-bold border border-brown/10">Enterprise SaaS</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs font-bold border border-brown/10">Al Products</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs font-bold border border-brown/10">Data Vis</span>
+                </div>
+                <!-- Slide 2: Tools -->
+                <div class="min-w-full flex flex-wrap gap-4 content-center justify-center">
+                    <i class="fab fa-figma text-3xl opacity-60 hover:opacity-100 transition-opacity"></i>
+                    <i class="fas fa-bolt text-3xl opacity-60 hover:opacity-100 transition-opacity" title="Jira"></i>
+                    <i class="fas fa-eye text-3xl opacity-60 hover:opacity-100 transition-opacity" title="Hotjar"></i>
+                    <i class="fas fa-code text-3xl opacity-60 hover:opacity-100 transition-opacity" title="Claude Code"></i>
+                </div>
+            </div>
+            <div class="flex justify-center space-x-1 mt-2">
+                <div class="w-2 h-2 rounded-full bg-dark-green"></div>
+                <div class="w-2 h-2 rounded-full bg-brown/20"></div>
+            </div>
+        </div>
+
+        <!-- Illustration Box -->
         <div class="bento-box box-illustration">
-            <svg class="w-24 h-24 text-white" viewBox="0 0 100 100">
-                <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" stroke-width="3" rx="10"/>
-                <circle cx="40" cy="45" r="5" fill="currentColor"/>
-                <circle cx="60" cy="45" r="5" fill="currentColor"/>
-                <path d="M 35 65 L 65 65" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            </svg>
+            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=Felix&gesture=ok" alt="Face" class="w-32">
         </div>
 
-        <!-- Work Closely With -->
+        <!-- Work Closely With Box -->
         <div class="bento-box box-work-with">
-            <h3 class="text-xl font-bold mb-6 italic">Work Closely With</h3>
-            <ul class="space-y-4 font-medium opacity-80">
-                <li>— McKesson</li>
-                <li>— CORE</li>
-                <li>— Almari</li>
-                <li>— Amtrak</li>
-            </ul>
+            <h3 class="text-xl font-bold mb-6">Work Closely With</h3>
+            <div class="grid grid-cols-2 gap-8 items-center">
+                <img src="https://logo.clearbit.com/mckesson.com" alt="McKesson" class="client-logo">
+                <img src="https://logo.clearbit.com/coca-cola.com" alt="Coke" class="client-logo">
+                <img src="https://logo.clearbit.com/almarai.com" alt="Almarai" class="client-logo">
+                <img src="https://logo.clearbit.com/amtrak.com" alt="Amtrak" class="client-logo">
+                <img src="https://logo.clearbit.com/equitable.com" alt="Equitable" class="client-logo">
+                <img src="https://logo.clearbit.com/mtn.com" alt="MTN" class="client-logo">
+                <img src="https://logo.clearbit.com/danone.com" alt="Danone" class="client-logo">
+            </div>
+            <img src="https://api.dicebear.com/7.x/notionists/svg?seed=team&backgroundColor=transparent" alt="Team Illustration" class="mt-auto opacity-80 h-24 self-start">
         </div>
 
-        <!-- I'll be in touch (Bottom Long) -->
+        <!-- Let's Build Box -->
         <div class="bento-box box-contact">
             <div class="flex-1">
-                <h3 class="text-2xl font-bold mb-2">I'll be in touch</h3>
-                <div class="px-6 py-2 bg-white rounded-full inline-block border border-brown/20 text-sm font-bold uppercase">Illustration</div>
+                <h3 class="text-4xl font-bold tracking-tight mb-4">Let's build<br>something great.</h3>
+                <p class="font-medium">yadavpushpesh @ gmail.com</p>
             </div>
-            <div class="text-right space-y-1">
-                <p class="font-bold">— Email me</p>
-                <p class="font-bold">— Fill form</p>
+            <div class="text-right hidden md:block">
+                <span class="text-xs font-bold uppercase opacity-40">Available for hire</span>
             </div>
         </div>
 
-        <!-- Socials -->
-        <div class="bento-box box-socials text-xs font-bold flex-row justify-center items-center space-x-4">
-            <span>MEDIUM</span>
-            <span>BEHANCE</span>
-            <span>LINKEDIN</span>
+        <!-- Socials Box -->
+        <div class="bento-box box-socials flex-row items-center justify-center space-x-6">
+            <a href="#"><i class="fab fa-linkedin-in text-xl"></i></a>
+            <a href="#"><i class="fab fa-behance text-xl"></i></a>
+            <a href="#"><i class="fab fa-medium-m text-xl"></i></a>
         </div>
 
-        <!-- Arrow -->
-        <div class="bento-box box-arrow" onclick="openView('cases')">
-            <i class="fas fa-arrow-up rotate-45 text-4xl"></i>
+        <!-- Small Dark Box (Copyright/Label) -->
+        <div class="bento-box box-arrow text-xs font-bold">
+            <div class="text-center opacity-50">
+                Maverix Labs ©<br>Pushpesh Yadav<br>2026
+            </div>
         </div>
 
     </div>
 
-    <!-- About Content -->
-    <div id="about-content" class="full-view">
-        <button onclick="closeView()" class="fixed top-8 left-8 font-bold flex items-center text-dark-green">
-            <i class="fas fa-arrow-left mr-2"></i> GO BACK
-        </button>
-        <div class="max-w-4xl mx-auto pt-12">
-            <h2 class="text-7xl font-bold text-dark-green mb-12">About Me</h2>
-            <div class="grid md:grid-cols-2 gap-16">
-                <p class="text-2xl leading-relaxed">
-                    I build bridges between user pain points and engineering solutions. With a focus on the digital ecosystem, I transform abstract ideas into scalable products.
-                </p>
-                <div class="space-y-8">
-                    <div>
-                        <h4 class="font-bold uppercase tracking-widest text-sm mb-2 opacity-50">Background</h4>
-                        <p>6+ years in Fintech and Healthcare sectors, managing cross-functional teams of designers and developers.</p>
+    <!-- ABOUT VIEW -->
+    <div id="about-content" class="full-view bg-white">
+        <div class="p-8 md:p-20 max-w-6xl mx-auto">
+            <button onclick="closeView()" class="text-sm font-bold tracking-widest text-dark-green mb-12 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> GO BACK
+            </button>
+            
+            <div class="grid md:grid-cols-12 gap-12">
+                <div class="md:col-span-8">
+                    <h2 class="text-7xl font-bold text-dark-green mb-8">About Me</h2>
+                    <p class="text-2xl leading-relaxed text-brown mb-8">
+                        I bridge the gap between user needs and business outcomes. Currently leading Al-driven enterprise HR analytics design at Value Matrix.Al.
+                    </p>
+                    <div class="space-y-6 text-lg opacity-80">
+                        <p>With over a decade of experience, I've architected scalable design systems for Pharmaceutical, Banking, and Government sectors. My background in Animation Design gives me a unique perspective on interaction and motion in enterprise environments.</p>
+                        <p>Now transitioning into Product Management, I combine deep UX expertise with product strategy and roadmapping to deliver production-ready specifications that engineering teams love.</p>
                     </div>
-                    <div>
-                        <h4 class="font-bold uppercase tracking-widest text-sm mb-2 opacity-50">Methodology</h4>
-                        <p>Lean startup advocate with a heavy focus on high-fidelity prototyping and data-driven user research.</p>
-                    </div>
+                </div>
+                <div class="md:col-span-4 bg-tan p-8 rounded-3xl h-fit">
+                    <h4 class="font-bold uppercase text-xs tracking-widest mb-6 opacity-50">Experience Highlights</h4>
+                    <ul class="space-y-6 text-sm font-semibold">
+                        <li>
+                            <div class="text-dark-green">Lead Product Designer</div>
+                            <div class="opacity-60 text-xs">Value Matrix.Al (2025-Present)</div>
+                        </li>
+                        <li>
+                            <div class="text-dark-green">Lead UI/UX Designer</div>
+                            <div class="opacity-60 text-xs">TCS (2021-2025)</div>
+                        </li>
+                        <li>
+                            <div class="text-dark-green">Assistant Manager - Design</div>
+                            <div class="opacity-60 text-xs">Absolutdata Analytics (2018-2021)</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Case Studies Content -->
-    <div id="cases-content" class="full-view">
-        <button onclick="closeView()" class="fixed top-8 left-8 font-bold flex items-center text-dark-green z-50">
-            <i class="fas fa-arrow-left mr-2"></i> GO BACK
-        </button>
-        
-        <div class="max-w-6xl mx-auto">
-            <!-- Project Nav -->
-            <div class="flex flex-wrap justify-center gap-4 mb-20">
+    <!-- CASE STUDIES VIEW -->
+    <div id="cases-content" class="full-view bg-[#F2F0EB]">
+        <div class="p-8 md:p-20 max-w-7xl mx-auto">
+            <button onclick="closeView()" class="text-sm font-bold tracking-widest text-dark-green mb-12 flex items-center">
+                <i class="fas fa-arrow-left mr-2"></i> GO BACK
+            </button>
+
+            <!-- Project Selector -->
+            <div class="flex flex-wrap gap-4 mb-20 justify-center">
                 <button class="case-nav-btn active" onclick="switchProject(1)">Project 01</button>
                 <button class="case-nav-btn" onclick="switchProject(2)">Project 02</button>
                 <button class="case-nav-btn" onclick="switchProject(3)">Project 03</button>
@@ -273,35 +303,40 @@
                 <button class="case-nav-btn" onclick="switchProject(6)">Project 06</button>
             </div>
 
-            <div id="project-detail" class="space-y-12 animate-in">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <h3 id="p-title" class="text-6xl font-bold mb-6">Patient Portal Redesign</h3>
-                        <p id="p-desc" class="text-xl opacity-80 leading-relaxed mb-8">
-                            Complete overhaul of a legacy medical portal. We focused on reducing the time-to-appointment by 40% through a streamlined intake flow.
-                        </p>
-                        <div class="flex space-x-8">
-                            <div><span class="block font-bold">Role</span><span class="opacity-60">Lead PM</span></div>
-                            <div><span class="block font-bold">Outcome</span><span class="opacity-60">+22% Growth</span></div>
+            <!-- Content Area -->
+            <div id="project-display" class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h3 id="p-title" class="text-7xl font-bold text-dark-green mb-6 leading-tight">PharmaClik Mobile App</h3>
+                    <p id="p-desc" class="text-xl leading-relaxed opacity-70 mb-10">
+                        Unified two separate pharmacy ordering and receiving applications into a single, cohesive mobile platform. We focused on eliminating workflow duplication for healthcare professionals.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex justify-between border-b border-brown/10 pb-2">
+                            <span class="font-bold">Sector</span>
+                            <span id="p-sector">Healthcare B2B</span>
+                        </div>
+                        <div class="flex justify-between border-b border-brown/10 pb-2">
+                            <span class="font-bold">Focus</span>
+                            <span id="p-focus">Information Architecture</span>
                         </div>
                     </div>
-                    <div class="aspect-video bg-tan rounded-3xl flex items-center justify-center border-2 border-dashed border-brown/20">
-                        <span class="font-bold opacity-30">[ USER FLOW DIAGRAM ]</span>
-                    </div>
                 </div>
-                
-                <div class="grid grid-cols-3 gap-6">
-                    <div class="h-64 bg-brown text-beige p-8 rounded-3xl flex flex-col justify-end">
-                        <h4 class="font-bold">The Problem</h4>
-                        <p class="text-sm opacity-70">Legacy systems and high drop-off rates.</p>
+                <div class="space-y-8">
+                    <div class="aspect-video bg-white rounded-3xl shadow-xl flex items-center justify-center p-8">
+                        <div class="text-center">
+                            <i class="fas fa-sitemap text-4xl text-dark-green mb-4"></i>
+                            <p class="text-xs font-bold uppercase tracking-widest opacity-40">User Flow Diagram</p>
+                        </div>
                     </div>
-                    <div class="h-64 bg-dark-green text-beige p-8 rounded-3xl flex flex-col justify-end">
-                        <h4 class="font-bold">The Solution</h4>
-                        <p class="text-sm opacity-70">Unified data layer and intuitive UX.</p>
-                    </div>
-                    <div class="h-64 bg-soft-red text-beige p-8 rounded-3xl flex flex-col justify-end">
-                        <h4 class="font-bold">The Results</h4>
-                        <p class="text-sm opacity-70">Decreased support tickets by 50%.</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="aspect-square bg-white rounded-3xl shadow-md p-6 flex flex-col justify-end">
+                            <span class="text-3xl font-bold text-dark-green mb-1">40%</span>
+                            <span class="text-xs font-bold opacity-60">Friction Reduction</span>
+                        </div>
+                        <div class="aspect-square bg-dark-green text-white rounded-3xl p-6 flex flex-col justify-end">
+                            <span class="text-3xl font-bold mb-1">Hi-Fi</span>
+                            <span class="text-xs opacity-60">Prototypes</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -309,6 +344,15 @@
     </div>
 
     <script>
+        // Skills Carousel Logic
+        let currentSlide = 0;
+        const track = document.getElementById('carousel-track');
+        setInterval(() => {
+            currentSlide = (currentSlide === 0) ? 1 : 0;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }, 3000);
+
+        // Navigation Logic
         function openView(id) {
             document.body.classList.add('view-active');
             document.querySelectorAll('.full-view').forEach(v => v.classList.add('hidden'));
@@ -319,13 +363,14 @@
             document.body.classList.remove('view-active');
         }
 
-        const projectData = {
-            1: { title: "Patient Portal Redesign", desc: "Complete overhaul of a legacy medical portal. We focused on reducing the time-to-appointment by 40% through a streamlined intake flow." },
-            2: { title: "Fintech Wallet App", desc: "A peer-to-peer payment system for emerging markets, focusing on low-bandwidth connectivity and security." },
-            3: { title: "Supply Chain Tracker", desc: "Real-time logistics monitoring for enterprise clients, reducing inventory loss by 15% annually." },
-            4: { title: "E-Commerce AI Agent", desc: "Implementation of a GPT-based shopping assistant that increased average order value by 12%." },
-            5: { title: "SaaS Analytics Tool", desc: "B2B dashboard for marketing teams to track multi-channel attribution with 99% accuracy." },
-            6: { title: "Internal HR grooming", desc: "Streamlining the employee lifecycle from onboarding to offboarding via an automated platform." }
+        // Project Data from Resume
+        const projects = {
+            1: { title: "PharmaClik Mobile App", sector: "Healthcare B2B", focus: "IA & UX Strategy", desc: "Unified two separate pharmacy ordering and receiving applications into a single platform for TCS client." },
+            2: { title: "Equitable RMD App", sector: "Enterprise UX", focus: "Workflow Automation", desc: "Converted legacy command-line workflows into a modern UI, reducing operational errors and training time." },
+            3: { title: "HR Al Analytics", sector: "SaaS / Al", focus: "Component Library", desc: "Lead design for Value Matrix.Al, creating an Al-driven HR analytics dashboard and full design system." },
+            4: { title: "Sales & Marketing IQ", sector: "Analytics", focus: "Data Visualisation", desc: "Designed an Al-powered analytics platform for B2B sales intelligence at Absolutdata." },
+            5: { title: "Banking Dashboard", sector: "Fintech", focus: "Complexity Management", desc: "Redesigning legacy banking portals for large-scale enterprise data visualization." },
+            6: { title: "Income Tax UI", sector: "Government", focus: "Accessibility (WCAG)", desc: "Lead UX strategy for large-scale public data systems with 100% compliance to accessibility standards." }
         };
 
         function switchProject(num) {
@@ -333,14 +378,11 @@
                 btn.classList.toggle('active', (i + 1) === num);
             });
             
-            const detail = document.getElementById('project-detail');
-            detail.style.opacity = 0;
-            
-            setTimeout(() => {
-                document.getElementById('p-title').innerText = projectData[num].title;
-                document.getElementById('p-desc').innerText = projectData[num].desc;
-                detail.style.opacity = 1;
-            }, 200);
+            const p = projects[num];
+            document.getElementById('p-title').innerText = p.title;
+            document.getElementById('p-sector').innerText = p.sector;
+            document.getElementById('p-focus').innerText = p.focus;
+            document.getElementById('p-desc').innerText = p.desc;
         }
 
         // Close on Esc
