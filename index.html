@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Product Manager Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        :root {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #2563eb;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Mockup scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d1d5db;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9ca3af;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">A</div>
+                    <span class="font-bold text-xl tracking-tight">Alex Rivera</span>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600 uppercase tracking-wider">
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#metrics" class="nav-link">Impact</a>
+                    <a href="#projects" class="nav-link">Case Studies</a>
+                    <a href="#skills" class="nav-link">Toolkit</a>
+                    <a href="#contact" class="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="pt-32 pb-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-6">
+                Bridging the gap between <span class="gradient-text">Users & Engineering</span>
+            </h1>
+            <p class="text-xl text-gray-600 mb-10 leading-relaxed max-w-2xl mx-auto">
+                Senior Digital Product Manager with 6+ years of experience leading cross-functional teams to build data-driven products that solve real problems.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#projects" class="bg-gray-900 text-white px-8 py-4 rounded-xl font-semibold hover:bg-black transition flex items-center justify-center">
+                    View Portfolio <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                </a>
+                <a href="mailto:hello@alexrivera.com" class="bg-white border border-gray-200 text-gray-900 px-8 py-4 rounded-xl font-semibold hover:bg-gray-50 transition">
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Metrics Section -->
+    <section id="metrics" class="py-16 bg-white border-y border-gray-100">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">45%</div>
+                    <p class="text-sm text-gray-500 uppercase font-semibold">User Growth</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">$12M+</div>
+                    <p class="text-sm text-gray-500 uppercase font-semibold">Revenue Managed</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">30+</div>
+                    <p class="text-sm text-gray-500 uppercase font-semibold">Features Launched</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-blue-600 mb-2">98%</div>
+                    <p class="text-sm text-gray-500 uppercase font-semibold">CSAT Score</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies / Projects -->
+    <section id="projects" class="py-24 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold mb-4">Strategic Case Studies</h2>
+                <div class="h-1 w-20 bg-blue-600"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <!-- Project 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="h-64 bg-blue-100 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="bg-blue-600 text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">B2B SaaS</span>
+                            <h3 class="text-2xl font-bold">Enterprise Analytics Dashboard</h3>
+                        </div>
+                        <!-- Placeholder for visual -->
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 group-hover:scale-110 transition duration-500">
+                            <i class="fas fa-chart-line text-9xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <p class="text-gray-600 mb-6">
+                            Redesigned the core reporting engine for 200+ enterprise clients. Reduced data latency by 60% and increased monthly active usage by 35%.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm">UX Research</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm">SQL</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm">Agile</span>
+                        </div>
+                        <button class="font-semibold text-blue-600 flex items-center hover:translate-x-1 transition cursor-pointer" onclick="toggleModal('modal-1')">
+                            Read Full Case Study <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="h-64 bg-purple-100 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 text-white">
+                            <span class="bg-purple-600 text-xs font-bold px-3 py-1 rounded-full uppercase mb-2 inline-block">Fintech</span>
+                            <h3 class="text-2xl font-bold">Mobile Onboarding 2.0</h3>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-20 group-hover:scale-110 transition duration-500">
+                            <i class="fas fa-mobile-alt text-9xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 flex-grow">
+                        <p class="text-gray-600 mb-6">
+                            Identified drop-off points in the KYC flow. Implemented biometrics and real-time validation, resulting in a 22% lift in conversion rates.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm">A/B Testing</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm">Mixpanel</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm">Compliance</span>
+                        </div>
+                        <button class="font-semibold text-blue-600 flex items-center hover:translate-x-1 transition cursor-pointer" onclick="toggleModal('modal-2')">
+                            Read Full Case Study <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills & Tools -->
+    <section id="skills" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-16">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Product Mastery</h2>
+                    <p class="text-gray-600 leading-relaxed mb-8">
+                        My approach combines deep empathy for user needs with a rigorous focus on business viability and technical feasibility.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-3 text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500"></i>
+                            <span>Roadmapping & Vision</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500"></i>
+                            <span>Product Discovery</span>
+                        </div>
+                        <div class="flex items-center space-x-3 text-gray-700">
+                            <i class="fas fa-check-circle text-blue-500"></i>
+                            <span>GTM Strategy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-span-2 grid grid-cols-2 sm:grid-cols-3 gap-6">
+                    <!-- Tool Cards -->
+                    <div class="p-6 bg-gray-50 rounded-2xl flex flex-col items-center text-center card-hover">
+                        <i class="fab fa-jira text-3xl mb-4 text-blue-400"></i>
+                        <span class="font-semibold">Jira / Atlassian</span>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl flex flex-col items-center text-center card-hover">
+                        <i class="fab fa-figma text-3xl mb-4 text-pink-500"></i>
+                        <span class="font-semibold">Figma</span>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl flex flex-col items-center text-center card-hover">
+                        <i class="fas fa-database text-3xl mb-4 text-green-500"></i>
+                        <span class="font-semibold">SQL / BigQuery</span>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl flex flex-col items-center text-center card-hover">
+                        <i class="fas fa-chart-area text-3xl mb-4 text-orange-500"></i>
+                        <span class="font-semibold">Mixpanel / GA4</span>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl flex flex-col items-center text-center card-hover">
+                        <i class="fab fa-slack text-3xl mb-4 text-purple-500"></i>
+                        <span class="font-semibold">Slack / Notion</span>
+                    </div>
+                    <div class="p-6 bg-gray-50 rounded-2xl flex flex-col items-center text-center card-hover">
+                        <i class="fas fa-vial text-3xl mb-4 text-indigo-500"></i>
+                        <span class="font-semibold">Optimizely</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="bg-gray-900 text-white py-20 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Ready to build the next big thing?</h2>
+            <p class="text-gray-400 mb-12 max-w-xl mx-auto">
+                Currently looking for new opportunities in Growth Product Management or Product Leadership roles.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 mb-16">
+                <a href="#" class="text-3xl hover:text-blue-400 transition"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-3xl hover:text-gray-400 transition"><i class="fab fa-github"></i></a>
+                <a href="#" class="text-3xl hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
+                <a href="mailto:hello@alexrivera.com" class="text-3xl hover:text-red-400 transition"><i class="fas fa-envelope"></i></a>
+            </div>
+            <p class="text-gray-500 text-sm">
+                &copy; 2024 Alex Rivera. Built with data-driven intent.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Simple Custom Modal System -->
+    <div id="modal-container" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 relative">
+            <button onclick="toggleModal()" class="absolute top-6 right-6 text-gray-400 hover:text-gray-600">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <div id="modal-content">
+                <!-- Dynamic Content Loads Here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const caseStudies = {
+            'modal-1': {
+                title: "Enterprise Analytics Dashboard",
+                content: `
+                    <h4 class="text-blue-600 font-bold uppercase text-sm mb-2">The Challenge</h4>
+                    <p class="mb-4 text-gray-700">Users reported that generating quarterly reports took over 15 minutes, leading to high churn in our premium tier.</p>
+                    <h4 class="text-blue-600 font-bold uppercase text-sm mb-2">The Solution</h4>
+                    <p class="mb-4 text-gray-700">I collaborated with the data engineering team to implement a GraphQL layer and pre-aggregated tables for high-demand metrics.</p>
+                    <h4 class="text-blue-600 font-bold uppercase text-sm mb-2">Key Metrics</h4>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700">
+                        <li>Load times reduced from 15 mins to 8 seconds</li>
+                        <li>NPS increased from +12 to +44</li>
+                        <li>$2M in churned revenue prevented</li>
+                    </ul>
+                `
+            },
+            'modal-2': {
+                title: "Mobile Onboarding 2.0",
+                content: `
+                    <h4 class="text-blue-600 font-bold uppercase text-sm mb-2">The Challenge</h4>
+                    <p class="mb-4 text-gray-700">60% of users abandoned the app during the identity verification stage.</p>
+                    <h4 class="text-blue-600 font-bold uppercase text-sm mb-2">The Solution</h4>
+                    <p class="mb-4 text-gray-700">Conducted user interviews which revealed high anxiety during document upload. Redesigned the UX to include "Progress Indicators" and simplified the camera interface.</p>
+                    <h4 class="text-blue-600 font-bold uppercase text-sm mb-2">Results</h4>
+                    <ul class="list-disc pl-5 mb-4 text-gray-700">
+                        <li>Verification completion rate jumped by 22%</li>
+                        <li>Support tickets regarding "Onboarding Help" fell by 40%</li>
+                    </ul>
+                `
+            }
+        };
+
+        function toggleModal(id) {
+            const container = document.getElementById('modal-container');
+            const content = document.getElementById('modal-content');
+            
+            if (id) {
+                const data = caseStudies[id];
+                content.innerHTML = `
+                    <h2 class="text-3xl font-bold mb-6">${data.title}</h2>
+                    ${data.content}
+                    <div class="mt-8 pt-8 border-t border-gray-100 flex justify-between">
+                        <span class="text-gray-400 text-sm italic">Project Date: Q3 2023</span>
+                        <a href="#" class="text-blue-600 font-semibold underline">View Prototype</a>
+                    </div>
+                `;
+                container.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else {
+                container.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Mobile Menu Logic
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        mobileBtn.addEventListener('click', () => {
+            // Simple visual feedback since the full menu isn't built out in this version
+            mobileBtn.classList.toggle('text-blue-600');
+        });
+
+        // Close modal on background click
+        document.getElementById('modal-container').addEventListener('click', function(e) {
+            if (e.target === this) toggleModal();
+        });
+    </script>
+</body>
+</html>
