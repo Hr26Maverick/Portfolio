@@ -14,16 +14,23 @@
             background-color: #f5f1ea;
             color: #3d2b1f;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
 
+        /* Container scales to fill screen while maintaining padding */
         .bento-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, auto);
+            grid-template-rows: repeat(3, 1fr); /* Equal height rows to fill viewport */
             gap: 1.5rem;
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            width: 100%;
+            max-width: 1600px; /* Increased max width for ultra-wide screens */
+            min-height: 90vh; /* Ensures it fills most of the screen */
+            margin: auto;
+            padding: 2rem;
+            box-sizing: border-box;
         }
 
         .bento-card {
@@ -33,6 +40,8 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-column: column;
         }
 
         .bento-card:hover {
@@ -41,13 +50,13 @@
         }
 
         /* Color Palette */
-        .bg-primary { background-color: #0b4d36; color: white; } /* Dark Green */
-        .bg-secondary { background-color: #f2ede4; } /* Light Sand */
-        .bg-accent { background-color: #a67c5d; color: white; } /* Brown */
-        .bg-dark-accent { background-color: #5c4033; color: white; } /* Darker Brown */
+        .bg-primary { background-color: #0b4d36; color: white; } 
+        .bg-secondary { background-color: #f2ede4; } 
+        .bg-accent { background-color: #a67c5d; color: white; } 
+        .bg-dark-accent { background-color: #5c4033; color: white; } 
 
-        /* Grid Layout Logic */
-        .card-hero { grid-column: span 1; grid-row: span 3; min-height: 600px; }
+        /* Grid Layout Logic - Optimized for full screen */
+        .card-hero { grid-column: span 1; grid-row: span 3; }
         .card-about { grid-column: span 1; grid-row: span 2; }
         .card-case { grid-column: span 1; grid-row: span 1; }
         .card-work { grid-column: span 1; grid-row: span 1; }
@@ -56,23 +65,34 @@
         .card-social { grid-column: span 2; grid-row: span 1; }
         .card-footer { grid-column: span 1; grid-row: span 1; }
 
-        /* Mobile Adjustments */
+        /* Responsive Breakpoints */
+        @media (max-width: 1280px) {
+            .bento-container {
+                grid-template-rows: auto; /* Allow height to grow as needed on smaller screens */
+                min-height: unset;
+            }
+        }
+
         @media (max-width: 1024px) {
             .bento-container {
                 grid-template-columns: repeat(2, 1fr);
             }
-            .card-hero { grid-row: span 2; }
+            .card-hero { grid-column: span 1; grid-row: span 2; }
+            .card-about { grid-column: span 1; grid-row: span 2; }
+            .card-cta { grid-column: span 2; }
+            .card-social { grid-column: span 2; }
         }
 
         @media (max-width: 640px) {
             .bento-container {
                 grid-template-columns: 1fr;
+                padding: 1rem;
             }
             .card-hero, .card-about, .card-case, .card-work, .card-skills, .card-cta, .card-social, .card-footer {
                 grid-column: span 1;
                 grid-row: auto;
-                min-height: unset;
             }
+            .card-hero { min-height: 400px; }
         }
 
         /* View Overlay Transition */
@@ -83,10 +103,10 @@
             width: 100%;
             height: 100%;
             background-color: #f5f1ea;
-            z-index: 50;
-            transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+            z-index: 100;
+            transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             overflow-y: auto;
-            padding: 3rem 10%;
+            padding: 3rem 5%;
         }
 
         .view-overlay.active {
@@ -97,7 +117,7 @@
         .carousel-track {
             display: flex;
             gap: 2rem;
-            animation: scroll 20s linear infinite;
+            animation: scroll 30s linear infinite;
             white-space: nowrap;
         }
 
@@ -114,13 +134,17 @@
             display: inline-block;
         }
 
-        /* SVG Sizing */
-        .svg-icon { width: 24px; height: 24px; }
-        .svg-large { width: 48px; height: 48px; }
-        .profile-img { width: 140px; position: absolute; bottom: 0; right: 0; }
+        /* Profile image anchoring */
+        .profile-img { 
+            width: 180px; 
+            position: absolute; 
+            bottom: 0; 
+            right: 10px; 
+            object-fit: contain;
+        }
     </style>
 </head>
-<body>
+<body class="flex items-center justify-center">
 
     <div class="bento-container">
         <!-- HERO CARD -->
@@ -128,16 +152,15 @@
             <div>
                 <div class="text-4xl font-light">py</div>
             </div>
-            <div class="relative pb-24">
-                <h1 class="text-6xl font-semibold leading-tight">Pushpesh<br>Yadav</h1>
+            <div class="relative pb-32">
+                <h1 class="text-5xl md:text-6xl font-semibold leading-tight">Pushpesh<br>Yadav</h1>
                 <div class="mt-6">
                     <span class="bg-white text-[#0b4d36] px-4 py-2 rounded-full text-sm font-medium">
                         Digital Product Manager
                     </span>
                 </div>
-                <!-- Avatar placeholder based on user upload -->
-                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE0MCAxODAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxODAiIGZpbGw9InRyYW5zcGFyZW50Ii8+PC9zdmc+" 
-                     alt="Avatar" class="profile-img" onerror="this.src='https://api.dicebear.com/7.x/avataaars/svg?seed=Pushpesh'">
+                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Pushpesh" 
+                     alt="Avatar" class="profile-img">
             </div>
         </div>
 
@@ -145,169 +168,165 @@
         <div class="bento-card card-about bg-secondary flex flex-col justify-between" onclick="openView('about-view')">
             <div>
                 <h2 class="text-3xl mb-6">About Me</h2>
-                <p class="text-gray-600 leading-relaxed text-sm">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+                <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                    A digital architect specializing in bridging the gap between complex technical possibilities and intuitive user experiences. Over the last 5 years, I've transformed vision into product reality.
                 </p>
             </div>
-            <div class="text-sm font-medium text-gray-500">Read Now >></div>
+            <div class="text-sm font-medium text-gray-500 flex items-center gap-2">
+                Read More 
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
         </div>
 
         <!-- CASE STUDIES CARD -->
         <div class="bento-card card-case bg-accent flex flex-col justify-between" onclick="openView('case-view')">
             <div class="flex justify-end">
-                <svg class="svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </div>
-            <h2 class="text-5xl font-light">Case<br>Studies</h2>
+            <h2 class="text-4xl md:text-5xl font-light">Case<br>Studies</h2>
         </div>
 
         <!-- WORK CLOSELY WITH CARD -->
-        <div class="bento-card card-work bg-secondary">
-            <h2 class="text-2xl mb-6">Work<br>Closely With</h2>
-            <div class="grid grid-cols-2 gap-4 opacity-70 grayscale">
-                <span class="text-xs font-bold">MCKESSON</span>
-                <span class="text-xs font-bold">COKE</span>
-                <span class="text-xs font-bold">ALMARAI</span>
-                <span class="text-xs font-bold">AMTRAK</span>
-                <span class="text-xs font-bold">EQUITABLE</span>
-                <span class="text-xs font-bold">DANONE</span>
+        <div class="bento-card card-work bg-secondary flex flex-col justify-center">
+            <h2 class="text-xl mb-4 opacity-60">Strategic Partners</h2>
+            <div class="grid grid-cols-2 gap-y-4 gap-x-2 opacity-70 grayscale text-[10px] font-bold tracking-widest">
+                <span>MCKESSON</span>
+                <span>COKE</span>
+                <span>ALMARAI</span>
+                <span>AMTRAK</span>
+                <span>EQUITABLE</span>
+                <span>DANONE</span>
             </div>
         </div>
 
         <!-- SKILLS & TOOLS CARD -->
-        <div class="bento-card card-skills bg-secondary overflow-hidden">
-            <h2 class="text-xl mb-4">Skills & Tools</h2>
-            <div class="mb-4 flex flex-wrap gap-2">
-                <span class="chip">Product Strategy</span>
-                <span class="chip">Agile</span>
-                <span class="chip">Data Analysis</span>
+        <div class="bento-card card-skills bg-secondary flex flex-col justify-between overflow-hidden">
+            <div>
+                <h2 class="text-xl mb-4">Core Skills</h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="chip">Strategy</span>
+                    <span class="chip">Agile</span>
+                    <span class="chip">Data</span>
+                </div>
             </div>
-            <div class="carousel-container relative mt-4 overflow-hidden py-2">
-                <div class="carousel-track">
-                    <!-- Repeated items for seamless loop -->
-                    <span class="font-bold mx-4">FIGMA</span>
-                    <span class="font-bold mx-4">JIRA</span>
-                    <span class="font-bold mx-4">ADOBE XD</span>
-                    <span class="font-bold mx-4">HOTJAR</span>
-                    <span class="font-bold mx-4">MIXPANEL</span>
-                    <!-- Repeat -->
-                    <span class="font-bold mx-4">FIGMA</span>
-                    <span class="font-bold mx-4">JIRA</span>
-                    <span class="font-bold mx-4">ADOBE XD</span>
-                    <span class="font-bold mx-4">HOTJAR</span>
-                    <span class="font-bold mx-4">MIXPANEL</span>
+            <div class="carousel-container relative overflow-hidden py-2 border-t border-gray-100 mt-4">
+                <div class="carousel-track text-xs font-bold uppercase opacity-50">
+                    <span>Figma</span><span>Jira</span><span>Adobe XD</span><span>Hotjar</span><span>Mixpanel</span>
+                    <span>Figma</span><span>Jira</span><span>Adobe XD</span><span>Hotjar</span><span>Mixpanel</span>
                 </div>
             </div>
         </div>
 
         <!-- CTA CARD -->
-        <div class="bento-card card-cta bg-secondary flex justify-between items-center">
-            <div class="max-w-md">
-                <h2 class="text-4xl font-semibold mb-4 leading-tight">Let's build<br>something great.</h2>
+        <div class="bento-card card-cta bg-secondary flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="w-full">
+                <h2 class="text-3xl md:text-4xl font-semibold mb-4 leading-tight">Let's build<br>the future together.</h2>
                 <p class="text-lg text-gray-600">yadavpushpesh @ gmail.com</p>
             </div>
-            <div class="flex flex-col items-end">
-                <span class="text-gray-400 text-xs mb-4">Available for hire</span>
-                <div class="flex -space-x-4">
-                     <!-- Illustration group from user uploads -->
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team1" class="w-12 h-12 rounded-full border-2 border-white bg-white">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team2" class="w-12 h-12 rounded-full border-2 border-white bg-white">
-                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Team3" class="w-12 h-12 rounded-full border-2 border-white bg-white">
+            <div class="flex flex-col items-end w-full md:w-auto">
+                <span class="text-gray-400 text-xs mb-4">Global Network</span>
+                <div class="flex -space-x-3">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=A" class="w-12 h-12 rounded-full border-2 border-[#f2ede4] bg-white">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=B" class="w-12 h-12 rounded-full border-2 border-[#f2ede4] bg-white">
+                    <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=C" class="w-12 h-12 rounded-full border-2 border-[#f2ede4] bg-white">
                 </div>
             </div>
         </div>
 
         <!-- SOCIALS CARD -->
         <div class="bento-card card-social bg-accent flex justify-between items-center">
-            <h2 class="text-3xl font-light">Follow Me</h2>
+            <h2 class="text-3xl font-light">Connect</h2>
             <div class="flex gap-6">
                 <a href="#" class="hover:scale-110 transition-transform">
-                    <svg class="svg-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
-                <a href="#" class="hover:scale-110 transition-transform">
-                    <span class="font-bold text-xl">Bē</span>
-                </a>
-                <a href="#" class="hover:scale-110 transition-transform">
-                    <span class="font-bold text-xl">M</span>
-                </a>
+                <span class="font-bold text-xl cursor-pointer">Bē</span>
+                <span class="font-bold text-xl cursor-pointer">M</span>
             </div>
         </div>
 
         <!-- FOOTER CARD -->
-        <div class="bento-card card-footer bg-dark-accent">
-            <p class="text-xs leading-relaxed opacity-80">
-                Maverix Labs ©<br>
-                Pushpesh Yadav 2026
+        <div class="bento-card card-footer bg-dark-accent flex items-center">
+            <p class="text-[10px] leading-relaxed opacity-60 uppercase tracking-tighter">
+                Pushpesh Yadav Portfolio<br>
+                Built for Excellence © 2026
             </p>
         </div>
     </div>
 
     <!-- ABOUT ME OVERLAY -->
     <div id="about-view" class="view-overlay">
-        <button onclick="closeView('about-view')" class="text-sm font-medium mb-12 flex items-center hover:translate-x-[-5px] transition-transform">
-            <svg class="w-4 h-4 mr-2 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Go Back
-        </button>
-        <div class="max-w-2xl">
-            <h1 class="text-6xl font-bold mb-8">About Me</h1>
-            <div class="space-y-6 text-xl text-gray-700 leading-relaxed">
-                <p>I am a Digital Product Manager with a passion for building user-centric products that solve real-world problems. With over 5 years of experience in the tech industry, I have led cross-functional teams to deliver impactful digital solutions.</p>
-                <p>My approach combines data-driven insights with empathetic design thinking. I believe that a great product is the intersection of business goals, technical feasibility, and user delight.</p>
-                <h3 class="text-2xl font-bold mt-12 mb-4">Core Philosophy</h3>
-                <p>Execution over everything. I thrive in environments where fast-paced iteration and continuous feedback loops are the norm.</p>
+        <div class="max-w-4xl mx-auto">
+            <button onclick="closeView('about-view')" class="text-sm font-medium mb-16 flex items-center hover:translate-x-[-8px] transition-transform group">
+                <svg class="w-5 h-5 mr-3 transition-transform group-hover:scale-125" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back to Dashboard
+            </button>
+            <h1 class="text-7xl font-bold mb-12 tracking-tight">About Me</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+                <div class="space-y-8 text-xl text-gray-700 leading-relaxed font-light">
+                    <p>I am a Product Leader with a foundation in user experience design and a sharp focus on business growth. I help companies navigate the complex journey from "I have an idea" to "we have a market-leading product."</p>
+                    <p>My methodology is built on a foundation of rapid prototyping, heavy data instrumentation, and a relentless focus on solving the right problems for the right people.</p>
+                </div>
+                <div class="bg-white p-8 rounded-[3rem] shadow-sm">
+                    <h3 class="text-2xl font-bold mb-6">Expertise</h3>
+                    <ul class="space-y-4 text-gray-600">
+                        <li class="flex items-center gap-4"><span class="w-2 h-2 bg-[#0b4d36] rounded-full"></span> Product Lifecycle Management</li>
+                        <li class="flex items-center gap-4"><span class="w-2 h-2 bg-[#0b4d36] rounded-full"></span> GTM Strategy & Launch</li>
+                        <li class="flex items-center gap-4"><span class="w-2 h-2 bg-[#0b4d36] rounded-full"></span> User Research & Persona Dev</li>
+                        <li class="flex items-center gap-4"><span class="w-2 h-2 bg-[#0b4d36] rounded-full"></span> Cross-functional Leadership</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- CASE STUDIES OVERLAY -->
     <div id="case-view" class="view-overlay">
-        <button onclick="closeView('case-view')" class="text-sm font-medium mb-12 flex items-center hover:translate-x-[-5px] transition-transform">
-            <svg class="w-4 h-4 mr-2 rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Go Back
-        </button>
+        <div class="max-w-6xl mx-auto">
+            <button onclick="closeView('case-view')" class="text-sm font-medium mb-16 flex items-center hover:translate-x-[-8px] transition-transform group">
+                <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Back to Dashboard
+            </button>
 
-        <h1 class="text-4xl font-bold mb-8">Selected Works</h1>
-        
-        <!-- Project Navigation -->
-        <div class="flex flex-wrap gap-4 mb-12 border-b border-gray-200 pb-4">
-            <button onclick="showProject(1)" class="project-tab active border-b-2 border-[#0b4d36] px-4 py-2 font-medium">Project 1</button>
-            <button onclick="showProject(2)" class="project-tab px-4 py-2 text-gray-500 hover:text-black">Project 2</button>
-            <button onclick="showProject(3)" class="project-tab px-4 py-2 text-gray-500 hover:text-black">Project 3</button>
-            <button onclick="showProject(4)" class="project-tab px-4 py-2 text-gray-500 hover:text-black">Project 4</button>
-            <button onclick="showProject(5)" class="project-tab px-4 py-2 text-gray-500 hover:text-black">Project 5</button>
-            <button onclick="showProject(6)" class="project-tab px-4 py-2 text-gray-500 hover:text-black">Project 6</button>
-        </div>
-
-        <!-- Project Content -->
-        <div id="project-display" class="grid grid-cols-1 md:grid-cols-2 gap-12 animate-in fade-in duration-500">
-            <div>
-                <h2 id="proj-title" class="text-3xl font-bold mb-4">Omnichannel E-commerce Platform</h2>
-                <p id="proj-desc" class="text-gray-600 mb-8 leading-relaxed">
-                    A comprehensive overhaul of the digital shopping experience, integrating offline inventory with online storefronts for a seamless user journey.
-                </p>
-                <div class="space-y-4">
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
-                        <h4 class="font-bold mb-2">The Challenge</h4>
-                        <p class="text-sm text-gray-500">Users were experiencing friction during the checkout process when combining store-pickup with home delivery items.</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl border border-gray-100">
-                        <h4 class="font-bold mb-2">The Solution</h4>
-                        <p class="text-sm text-gray-500">Redesigned the cart logic and user flow to separate fulfillment methods early in the checkout funnel.</p>
-                    </div>
-                </div>
+            <h1 class="text-5xl font-bold mb-12">Case Studies</h1>
+            
+            <div class="flex flex-wrap gap-4 mb-16 border-b border-gray-200 pb-2">
+                <button onclick="showProject(1)" class="project-tab active border-b-2 border-[#0b4d36] px-6 py-4 font-semibold text-lg transition-all">01. E-Commerce</button>
+                <button onclick="showProject(2)" class="project-tab px-6 py-4 text-gray-400 hover:text-black transition-all">02. Fintech</button>
+                <button onclick="showProject(3)" class="project-tab px-6 py-4 text-gray-400 hover:text-black transition-all">03. Healthcare</button>
+                <button onclick="showProject(4)" class="project-tab px-6 py-4 text-gray-400 hover:text-black transition-all">04. AI Tools</button>
+                <button onclick="showProject(5)" class="project-tab px-6 py-4 text-gray-400 hover:text-black transition-all">05. EdTech</button>
+                <button onclick="showProject(6)" class="project-tab px-6 py-4 text-gray-400 hover:text-black transition-all">06. SaaS</button>
             </div>
-            <div class="space-y-4">
-                <div class="aspect-video bg-gray-200 rounded-2xl overflow-hidden flex items-center justify-center text-gray-400 italic">
-                    [User Flow Diagram Placeholder]
+
+            <div id="project-display" class="grid grid-cols-1 lg:grid-cols-2 gap-20 transition-opacity duration-500">
+                <div>
+                    <h2 id="proj-title" class="text-4xl font-bold mb-6 text-[#0b4d36]">Omnichannel E-commerce Platform</h2>
+                    <p id="proj-desc" class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        A digital-first strategy that unified physical retail with online presence, resulting in a 40% increase in checkout efficiency.
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="p-8 bg-white rounded-3xl border border-gray-100">
+                            <span class="text-xs uppercase tracking-widest text-[#a67c5d] font-bold block mb-4">Discovery</span>
+                            <p class="text-sm text-gray-500">Identified that 60% of users abandoned carts due to delivery time uncertainty.</p>
+                        </div>
+                        <div class="p-8 bg-white rounded-3xl border border-gray-100">
+                            <span class="text-xs uppercase tracking-widest text-[#a67c5d] font-bold block mb-4">Outcome</span>
+                            <p class="text-sm text-gray-500">Implemented real-time inventory tracking and dynamic delivery windows.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="aspect-square bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 italic">Screen A</div>
-                    <div class="aspect-square bg-gray-200 rounded-2xl flex items-center justify-center text-gray-400 italic">Screen B</div>
+                <div class="space-y-6">
+                    <div class="aspect-video bg-[#0b4d36]/5 rounded-[3rem] border-2 border-dashed border-[#0b4d36]/20 flex flex-col items-center justify-center text-[#0b4d36]">
+                        <svg class="w-12 h-12 mb-4 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-width="1"/></svg>
+                        <p class="font-medium">User Flow Map</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="aspect-square bg-gray-100 rounded-[2rem]"></div>
+                        <div class="aspect-square bg-gray-100 rounded-[2rem]"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -325,28 +344,26 @@
         }
 
         const projectData = {
-            1: { title: "Omnichannel E-commerce", desc: "A comprehensive overhaul of the digital shopping experience." },
-            2: { title: "Fintech Mobile App", desc: "Simplifying micro-investments for first-time Gen-Z users." },
-            3: { title: "Healthcare CRM", desc: "Streamlining patient data management for multi-specialty clinics." },
-            4: { title: "AI Analytics Dashboard", desc: "Predictive modeling for supply chain efficiency in retail." },
-            5: { title: "EdTech Learning Portal", desc: "Gamifying the remote learning experience for primary schools." },
-            6: { title: "SaaS Booking Engine", desc: "High-conversion booking system for luxury boutique hotels." }
+            1: { title: "Omnichannel E-commerce", desc: "Unifying retail experience across all digital and physical touchpoints." },
+            2: { title: "Micro-Investing App", desc: "Lowering the barrier to entry for retail investors via simplified UX." },
+            3: { title: "Patient Flow CRM", desc: "Optimizing throughput in emergency departments via predictive analytics." },
+            4: { title: "AI Content Studio", desc: "Automating enterprise content workflows using generative AI models." },
+            5: { title: "Global Learning Hub", desc: "Connecting mentors and students across 4 continents in real-time." },
+            6: { title: "Enterprise Resource Planner", desc: "Cloud-native resource management for medium-scale manufacturers." }
         };
 
         function showProject(id) {
-            // Update active tab styling
             const tabs = document.querySelectorAll('.project-tab');
             tabs.forEach((tab, index) => {
                 if (index === id - 1) {
                     tab.classList.add('active', 'border-b-2', 'border-[#0b4d36]', 'text-black');
-                    tab.classList.remove('text-gray-500');
+                    tab.classList.remove('text-gray-400');
                 } else {
                     tab.classList.remove('active', 'border-b-2', 'border-[#0b4d36]', 'text-black');
-                    tab.classList.add('text-gray-500');
+                    tab.classList.add('text-gray-400');
                 }
             });
 
-            // Update content with a quick fade
             const display = document.getElementById('project-display');
             display.style.opacity = '0';
             
@@ -354,7 +371,7 @@
                 document.getElementById('proj-title').innerText = projectData[id].title;
                 document.getElementById('proj-desc').innerText = projectData[id].desc;
                 display.style.opacity = '1';
-            }, 200);
+            }, 300);
         }
     </script>
 </body>
